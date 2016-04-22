@@ -15,9 +15,9 @@ public class PlayerTest {
         Player player = new Player("Player");
         player.setStayValue(22);
         player.deal(new Card(Suit.CLUBS, Value.EIGHT));
-        assertThat(player.nextMove(), is(Move.DRAW));
+        assertThat(player.nextMove(), is(Move.DRAWS));
         player.deal(new Card(Suit.CLUBS, Value.EIGHT));
-        assertThat(player.nextMove(), is(Move.DRAW));
+        assertThat(player.nextMove(), is(Move.DRAWS));
         player.deal(new Card(Suit.CLUBS, Value.EIGHT));
         assertThat(player.nextMove(), is(Move.BUST));
     }
@@ -27,9 +27,9 @@ public class PlayerTest {
         Player player = new Player("Player");
         player.setStayValue(15);
         player.deal(new Card(Suit.CLUBS, Value.TEN));
-        assertThat(player.nextMove(), is(Move.DRAW));
+        assertThat(player.nextMove(), is(Move.DRAWS));
         player.deal(new Card(Suit.CLUBS, Value.FIVE));
-        assertThat(player.nextMove(), is(Move.STAY));
+        assertThat(player.nextMove(), is(Move.STAYS));
     }
 
     @Test
@@ -37,9 +37,9 @@ public class PlayerTest {
         Player player = new Player("Player");
         player.setStayValue(15);
         player.deal(new Card(Suit.CLUBS, Value.TEN));
-        assertThat(player.nextMove(), is(Move.DRAW));
+        assertThat(player.nextMove(), is(Move.DRAWS));
         player.deal(new Card(Suit.CLUBS, Value.EIGHT));
-        assertThat(player.nextMove(), is(Move.STAY));
+        assertThat(player.nextMove(), is(Move.STAYS));
     }
 
     @Test
@@ -47,8 +47,8 @@ public class PlayerTest {
         Player player = new Player("Player");
         player.setStayValue(21);
         player.deal(new Card(Suit.CLUBS, Value.JACK));
-        assertThat(player.nextMove(), is(Move.DRAW));
+        assertThat(player.nextMove(), is(Move.DRAWS));
         player.deal(new Card(Suit.CLUBS, Value.ACE));
-        assertThat(player.nextMove(), is(Move.STAY));
+        assertThat(player.nextMove(), is(Move.STAYS));
     }
 }

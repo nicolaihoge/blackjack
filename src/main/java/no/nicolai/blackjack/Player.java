@@ -1,7 +1,7 @@
 package no.nicolai.blackjack;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 import static no.nicolai.blackjack.Blackjack.BLACKJACK;
 
@@ -9,19 +9,19 @@ import static no.nicolai.blackjack.Blackjack.BLACKJACK;
  */
 public class Player {
     private String name;
-    private Set<Card> hand;
+    private List<Card> hand;
     private int stayValue = 0;
 
     public Player(String name) {
         this.name = name;
-        hand = new HashSet<Card>();
+        hand = new LinkedList<Card>();
     }
 
     public String getName() {
         return name;
     }
 
-    public Set<Card> getHand() {
+    public List<Card> getHand() {
         return hand;
     }
 
@@ -36,17 +36,16 @@ public class Player {
             move = Move.BUST;
         }
         else if (score >= stayValue) {
-            move = Move.STAY;
+            move = Move.STAYS;
         }
         else {
-            move = Move.DRAW;
+            move = Move.DRAWS;
         }
         return move;
     }
 
     public void deal(Card card) {
         hand.add(card);
-        System.out.println(toString());
     }
 
     public String toString () {

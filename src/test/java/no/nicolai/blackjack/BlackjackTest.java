@@ -4,9 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -19,7 +17,7 @@ public class BlackjackTest
 
     @org.junit.Test
     public void getHandScore() {
-        Set<Card> cards = new HashSet<Card>();
+        List<Card> cards = new LinkedList<Card>();
         cards.add(new Card(Suit.CLUBS, Value.EIGHT));
         cards.add(new Card(Suit.CLUBS, Value.THREE));
         cards.add(new Card(Suit.CLUBS, Value.ACE));

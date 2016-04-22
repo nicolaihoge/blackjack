@@ -1,6 +1,6 @@
 package no.nicolai.blackjack;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  *
@@ -9,7 +9,7 @@ public class Blackjack {
 
     public static int BLACKJACK = 21;
 
-    static public int handScore(Set<Card> cards) {
+    static public int handScore(List<Card> cards) {
         int handScore = 0;
         for (Card card : cards) {
             handScore += card.getPointValue();
@@ -22,21 +22,20 @@ public class Blackjack {
         System.exit(0);
     }
 
-    private static void printScore(Player player) {
-        System.out.println(player.getName() + " score: " + handScore(player.getHand()));
-    }
-
     private static void play(Deck deck, Player player) {
         Move nextMove = player.nextMove();
-        while (nextMove == Move.DRAW) {
+        while (nextMove == Move.DRAWS) {
             System.out.println(player.getName() + " " + nextMove);
             player.deal(deck.draw());
-            printScore(player);
+            printHand(player);
             nextMove = player.nextMove();
         }
         System.out.println(player.getName() + " " + nextMove);
     }
 
+    private static void printHand(Player player) {
+        System.out.println(player + "Score: " + handScore(player.getHand()));
+    }
 
     public static void main( String[] args ) {
         Deck deck = new Deck();
@@ -46,11 +45,11 @@ public class Blackjack {
         sam.deal(deck.draw());
         sam.deal(deck.draw());
         sam.setStayValue(17);
-        printScore(sam);
+        printHand(sam);
 
         dealer.deal(deck.draw());
         dealer.deal(deck.draw());
-        printScore(dealer);
+        printHand(dealer);
 
         System.out.println();
 
@@ -84,5 +83,4 @@ public class Blackjack {
         }
 
     }
-
 }
