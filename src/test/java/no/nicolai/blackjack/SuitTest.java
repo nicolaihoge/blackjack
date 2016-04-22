@@ -11,7 +11,7 @@ public class SuitTest {
     @org.junit.Test
     public void testToString() throws Exception {
         Suit suit = Suit.CLUBS;
-        assertThat(suit.toString(), is("C"));
+        assertThat(suit.toString(), is("\u2663"));
 
     }
 }
