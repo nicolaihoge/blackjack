@@ -64,7 +64,7 @@ public class Blackjack {
                 winner(dealer);
             }
 
-            dealer.setStayValue(handScore(sam.getHand()));
+            dealer.setStayValue(handScore(sam.getHand()) + 1);
             play(deck, dealer);
 
             if (dealer.nextMove() == Move.BUST) {
