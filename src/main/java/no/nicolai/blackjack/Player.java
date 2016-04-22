@@ -31,7 +31,6 @@ public class Player {
 
     public Move nextMove() {
         int score = Blackjack.handScore(hand);
-        System.out.println(name + " score: " + score);
         Move move;
         if (score > BLACKJACK) {
             move = Move.BUST;
@@ -42,7 +41,6 @@ public class Player {
         else {
             move = Move.DRAW;
         }
-        System.out.println(move);
         return move;
     }
 

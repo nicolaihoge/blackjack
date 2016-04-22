@@ -22,12 +22,16 @@ public class Blackjack {
         System.out.flush();
     }
 
-    public static void printHands(Player player1, Player player2) {
-        //clearScreen();
-        System.out.println(player1);
-        System.out.println(player2);
-
+    public static void winner(Player player) {
+        System.out.println(player.getName() + " wins!");
+        System.exit(0);
     }
+
+    public static void printScore(Player player) {
+        System.out.println(player.getName() + " score: " + handScore(player.getHand()));
+    }
+
+
 
     public static void main( String[] args ) {
         Deck deck = new Deck();
@@ -37,26 +41,53 @@ public class Blackjack {
         sam.deal(deck.draw());
         sam.deal(deck.draw());
         sam.setStayValue(17);
+        printScore(sam);
 
         dealer.deal(deck.draw());
         dealer.deal(deck.draw());
+        printScore(dealer);
 
         System.out.println();
 
         if (handScore(dealer.getHand()) == BLACKJACK) {
-            System.out.println("Dealer wins.");
+            winner(dealer);
         } else if (handScore(sam.getHand()) == BLACKJACK) {
-            System.out.println("Sam wins");
+            winner(sam);
         } else {
-            while (sam.nextMove() == Move.DRAW) {
-                sam.deal(deck.draw());
+            play(deck, sam);
+
+            if (sam.nextMove() == Move.BUST) {
+                winner(dealer);
             }
+
             dealer.setStayValue(handScore(sam.getHand()));
-            while (dealer.nextMove() == Move.DRAW) {
-                dealer.deal(deck.draw());
+            play(deck, dealer);
+
+            if (dealer.nextMove() == Move.BUST) {
+                winner(sam);
+            } else {
+                int samScore = handScore(sam.getHand());
+                int dealerScore = handScore(dealer.getHand());
+
+                if (dealerScore >= samScore) {
+                    winner(dealer);
+                } else {
+                    winner(sam);
+                }
             }
 
         }
 
+    }
+
+    private static void play(Deck deck, Player player) {
+        Move nextMove = player.nextMove();
+        while (nextMove == Move.DRAW) {
+            System.out.println(player.getName() + " " + nextMove);
+            player.deal(deck.draw());
+            printScore(player);
+            nextMove = player.nextMove();
+        }
+        System.out.println(player.getName() + " " + nextMove);
     }
 }
