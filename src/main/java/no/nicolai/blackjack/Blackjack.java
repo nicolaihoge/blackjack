@@ -17,20 +17,25 @@ public class Blackjack {
         return handScore;
     }
 
-    public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
-    public static void winner(Player player) {
+    private static void winner(Player player) {
         System.out.println(player.getName() + " wins!");
         System.exit(0);
     }
 
-    public static void printScore(Player player) {
+    private static void printScore(Player player) {
         System.out.println(player.getName() + " score: " + handScore(player.getHand()));
     }
 
+    private static void play(Deck deck, Player player) {
+        Move nextMove = player.nextMove();
+        while (nextMove == Move.DRAW) {
+            System.out.println(player.getName() + " " + nextMove);
+            player.deal(deck.draw());
+            printScore(player);
+            nextMove = player.nextMove();
+        }
+        System.out.println(player.getName() + " " + nextMove);
+    }
 
 
     public static void main( String[] args ) {
@@ -80,14 +85,4 @@ public class Blackjack {
 
     }
 
-    private static void play(Deck deck, Player player) {
-        Move nextMove = player.nextMove();
-        while (nextMove == Move.DRAW) {
-            System.out.println(player.getName() + " " + nextMove);
-            player.deal(deck.draw());
-            printScore(player);
-            nextMove = player.nextMove();
-        }
-        System.out.println(player.getName() + " " + nextMove);
-    }
 }
