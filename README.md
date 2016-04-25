@@ -1,6 +1,7 @@
 # blackjack
 
 To run:
+mvn install
 mvn exec:java
 
 To test:

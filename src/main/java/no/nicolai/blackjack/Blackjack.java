@@ -42,7 +42,8 @@ public class Blackjack {
         Player sam = new Player("Sam");
         Player dealer = new Player("Dealer");
 
-        sam.deal(deck.draw());
+        System.out.println("DEAL CARDS");
+	sam.deal(deck.draw());
         sam.deal(deck.draw());
         sam.setStayValue(17);
         printHand(sam);
